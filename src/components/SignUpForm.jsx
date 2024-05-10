@@ -8,7 +8,6 @@ function SignUp({ setToken }) {
 
   const submit = async (event) => {
     event.preventDefault();
-    console.log(form);
     try {
       const response = await fetch(
         "https://fsa-jwt-practice.herokuapp.com/signup",
@@ -25,7 +24,6 @@ function SignUp({ setToken }) {
       );
 
       const result = await response.json();
-      console.log(result);
       setToken(result.token);
     } catch (error) {
       console.log(error);
@@ -36,7 +34,6 @@ function SignUp({ setToken }) {
     const newObj = { ...form };
     newObj[event.target.name] = event.target.value;
     setForm(newObj);
-    // console.log(form)
   };
 
   return (
@@ -48,12 +45,16 @@ function SignUp({ setToken }) {
           name={"username"}
           onChange={setChange}
           placeholder={"Username"}
+          minLength={"4"}
+          maxLength={"16"}
         />
         <input
           type="password"
           name={"password"}
           onChange={setChange}
           placeholder={"Password"}
+          minLength={"4"}
+          maxLength={"16"}
         />
         <input id={"submit"} type="submit" value={"Submit"} />
       </form>
